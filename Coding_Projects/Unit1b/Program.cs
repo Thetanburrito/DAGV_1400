@@ -41,14 +41,14 @@ static string TestInput(string InputVar)
     }
     else
     {
-        if (Double.TryParse(InputVar, out double result))
+        if (Int32.TryParse(InputVar, out int result2))
+        {
+            return "true";
+        }
+        else if (Int32.TryParse(InputVar, out int result))
         {
             Console.WriteLine("Lets not put in any decimal places");
             return "double";
-        }
-        else if (Int32.TryParse(InputVar, out int result2))
-        {
-            return "true";
         }
         else
         {
