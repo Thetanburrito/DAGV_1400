@@ -26,13 +26,15 @@ switch (ProjectResult)
 
 
 
-
+//Unitc 1c
 static void Lab1c()
 {
     Console.WriteLine("this is currently not working rn I am still working on it");
 }
 
 
+
+//Extra Work
 static void TempConverter()
 {
     var IncrementVar = 0;
@@ -108,8 +110,7 @@ static void TempConverter()
 }
 
 
-
-
+//Unit 1b
 static void Lab1b()
 {
     Console.WriteLine("What tempurature is it in celcius?");
