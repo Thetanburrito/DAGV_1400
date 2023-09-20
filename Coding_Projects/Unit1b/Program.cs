@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-Console.WriteLine("Hello! What Project Would You Like To Access?\n1. Lab1b\n2. Lab1c\n3. Challenge1c\n4. TempConverter");
+Console.WriteLine("Hello! What Project Would You Like To Access?\n1. Lab1b\n2. Lab1c\n3. Challenge1c\n4. Challenge1c Part2\n5. TempConverter");
 string ProjectResult = Console.ReadLine();
 
 switch (ProjectResult)
@@ -19,6 +19,10 @@ switch (ProjectResult)
         Challenge1c();
         break;
     case "4":
+        Console.WriteLine("You have Chosen Challenge1c Part2\n\n\n");
+        Challenge1c_();
+        break;
+    case "5":
         Console.WriteLine("You have Chosen Tempurature Converter\n\n\n");
         TempConverter();
         break;
@@ -85,7 +89,7 @@ static void Challenge1c()
     int num = rnd.Next(100);
     Console.WriteLine("Alright I've already got a number, start guessing it's between 1 and 100");
     string guess = "-999";
-    int Health = 3;
+    int Health = 10;
     Console.WriteLine("You have " + Health + " lives left");
     
     
@@ -95,48 +99,53 @@ static void Challenge1c()
         {
             guess = Console.ReadLine();
             int guessInt = Int32.Parse(guess);
-            bool gotit = HotOrCold(guessInt, num, Health);
+            int gotit = HotOrCold(guessInt, num, Health);
+            if (gotit != 0)
+            {
+                Health--;
+            }
         }
         else
         {
+            Console.WriteLine("You've ran out of lives...\n\nThe number was " + num);
             break;
         }
         
     }
 
-    static bool HotOrCold(int Test, int RandNum,int Health_)
+    static int HotOrCold(int Test, int RandNum,int Health_)
     {
         int test_ = RandNum - Test;
 
 
-        if (test_ > 50 || test_ < -50)
+        if (test_ >= 50 || test_ <= -50)
         {
             Health_--;
             Console.WriteLine("Pretty far away\n" + "You have " + Health_ + " lives left");
-            return false;
+            return test_;
         }
-        else if (test_ > 25 && test_ < 50 || test_ < -25 && test_ > -50)
+        else if (test_ >= 25 && test_ < 50 || test_ <= -25 && test_ > -50)
         {
             Health_--;
-            Console.WriteLine("Far" + "You have " + Health_ + " lives left");
-            return false;
+            Console.WriteLine("Far\n" + "You have " + Health_ + " lives left");
+            return test_;
         }
-        else if (test_ > 10 && test_ < 25 || test_ < -10 && test_ > -25)
+        else if (test_ >= 10 && test_ < 25 || test_ <= -10 && test_ > -25)
         {
             Health_--;
-            Console.WriteLine("You're within 25!" + "You have " + Health_ + " lives left");
-            return false;
+            Console.WriteLine("You're within 25!\n" + "You have " + Health_ + " lives left");
+            return test_;
         }
         else if (test_ != 0)
         {
             Health_--;
-            Console.WriteLine("You are close!" + "You have " + Health_ + " lives left");
-            return false;
+            Console.WriteLine("You are close! At least within 10\n" + "You have " + Health_ + " lives left");
+            return test_;
         }
         else
         {
             Console.WriteLine("You got it!!!");
-            return true;
+            return test_;
         }
     }
 
@@ -145,7 +154,25 @@ static void Challenge1c()
 
 }
 
+static void Challenge1c_()
+{
+    string Foods = "";
+    List<string> foodList = new List<string>();
+    Console.WriteLine("Give me a list of favourite foods, and then type 'done' when done.");
+    while (Foods != "done")
+    {
+        Foods = Console.ReadLine();
+        if (Foods != "done")
+        {
+            foodList.Add(Foods);
+        }
 
+    }
+    for (int i = 0; i < foodList.Count; i++)
+    {
+        Console.WriteLine("I love " + foodList[i]);
+    }
+}
 //Extra Work
 static void TempConverter()
 {
